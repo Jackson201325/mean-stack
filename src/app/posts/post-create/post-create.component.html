@@ -3,6 +3,7 @@
     <form (submit)="onAddPost(postFrom)" #postFrom="ngForm">
             <mat-form-field >
                 <input matInput
+                       placeholder="Title"
                        name="title"
                        ngModel
                        required
@@ -11,7 +12,8 @@
                        <mat-error *ngIf="title.invalid">Please entre a post Title</mat-error>
             </mat-form-field>
             <mat-form-field>
-                <textarea 
+                <textarea
+                        placeholder="Desription"
                         matInput 
                         rows="4"
                         name="content"
