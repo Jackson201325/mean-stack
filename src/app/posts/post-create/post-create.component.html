@@ -2,8 +2,7 @@
 <mat-card>
     <form (submit)="onAddPost(postFrom)" #postFrom="ngForm">
             <mat-form-field >
-                <input matInput 
-                       placeholder="Input"
+                <input matInput
                        name="title"
                        ngModel
                        required
@@ -18,7 +17,7 @@
                         name="content"
                         ngModel
                         required
-                        minlength="8"
+                        minlength="3"
                         #content="ngModel"></textarea>
                        <mat-error *ngIf="content.invalid">Please entre a post Content</mat-error>
             </mat-form-field>
