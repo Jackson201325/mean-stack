@@ -14,8 +14,9 @@ export class PostsService {
 
   getPost() {
     this.httpClient.get<{message: string, posts: Post[]}>('http://localhost:5000/api/posts')
-      .subscribe((reqData) => {
+      .subscribe((reqData: { posts: Post[]; }) => {
         this.posts = reqData.posts;
+        console.log(this.posts);
         this.postsUpdate.next([...this.posts]);
       });
   }
