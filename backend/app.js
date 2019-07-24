@@ -3,12 +3,24 @@ const express = require('express');
 
 const app = express();
 
-app.use((req, res, next) => {
-  console.log('Hello from the MiddleWare')
-  next()
+app.use("/api/posts",(req, res, next) => {
+  const posts = [
+    {
+      id:"12345gfvaf",
+      title:"First server-side post",
+      content:"This is from the server"
+    },
+    {
+      id:"j434hn3m434n",
+      title:"Second server-side post",
+      content:"This is from the server"
+    }
+  ]
+  res.status(200).json({
+    "message": "I have no idea what the fuck is this",
+    "posts":posts
+  })
 })
-app.use((req, res, next) => {
-  res.send('Hello From Express')
-})
+
 
 module.exports = app
