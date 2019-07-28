@@ -1,7 +1,11 @@
 // will hold the express app
 const express = require('express');
+const bodyParse = require('body-parser')
 
 const app = express();
+
+app.use(bodyParse.json());
+app.use(bodyParse.urlencoded({ extended:false }));
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -16,7 +20,16 @@ app.use((req, res, next) => {
   next();
 })
 
-app.use("/api/posts",(req, res, next) => {
+app.post("/api/posts", (req, res, next) => {
+  const post = req.body;
+  console.log(post);
+  res.status(201).json({
+    message: 'New post was added',
+    post: post
+  })  
+})
+
+app.get("/api/posts",(req, res, next) => {
   const posts = [
     {
       id:"12345gfvaf",
@@ -30,10 +43,11 @@ app.use("/api/posts",(req, res, next) => {
     }
   ]
   res.status(200).json({
-    "message": "I have no idea what the fuck is this",
+    "message": "Posts fetched successfully",
     "posts":posts
   })
 })
-
+// password
+// K88LaUq4S4ckT9UB
 
 module.exports = app
