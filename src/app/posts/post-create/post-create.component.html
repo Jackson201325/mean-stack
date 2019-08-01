@@ -1,11 +1,11 @@
 
 <mat-card>
-    <form (submit)="onAddPost(postFrom)" #postFrom="ngForm">
+    <form (submit)="onSavePost(postFrom)" #postFrom="ngForm">
             <mat-form-field >
                 <input matInput
                        placeholder="Title"
                        name="title"
-                       ngModel
+                       [ngModel]="post.title"
                        required
                        minlength="3"
                        #title="ngModel">
@@ -17,11 +17,11 @@
                         matInput 
                         rows="4"
                         name="content"
-                        ngModel
+                        [ngModel]="post.content"
                         required
                         minlength="3"
                         #content="ngModel"></textarea>
-                       <mat-error *ngIf="content.invalid">Please entre a post Content</mat-error>
+                    <mat-error *ngIf="content.invalid">Please entre a post Content</mat-error>
             </mat-form-field>
             <button 
                     mat-raised-button 
