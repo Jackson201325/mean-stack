@@ -37,17 +37,23 @@ export class PostCreateComponent implements OnInit {
     //         }
     //     });
     // }
+
     ngOnInit() {
         this.route.paramMap.subscribe((paramMap: ParamMap) => {
             if (paramMap.has('id')) {
                 this.mode = 'edit';
                 this.postId = paramMap.get('id');
-                this.post = this.postService.showPost(this.postId);
+                this.postService.showPost(this.postId)
+                    .subscribe(postData => {
+                        console.log('This is post Data', postData);
+
+                        this.post = {id: postData._id, title: postData.title, content: postData.content};
+                    });
             } else {
                 this.mode = 'create';
                 this.postId = null;
             }
-        })
+        });
     }
     onSavePost(postForm: NgForm) {
         if (!postForm.valid) {
